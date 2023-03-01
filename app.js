@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const ejsMate = require('ejs-mate');
 const Campground = require('./models/campground');
 const methodOverride = require('method-override');
 
+mongoose.set('strictQuery', true);
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -16,6 +18,7 @@ db.once("open", () => {
 });
 
 const app = express();
+app.engine('ejs', ejsMate);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
@@ -36,7 +39,7 @@ app.get('/campgrounds/new', (req, res) => {
 })
 
 app.post('/campgrounds', async (req, res) => {
-    console.log(req.body.campground)
+    //console.log(req.body.campground)
     const campground = new Campground(req.body.campground);
     await campground.save();
     res.redirect('campgrounds');
