@@ -4,8 +4,9 @@ const Campground = require('./models/campground');
 const Review = require('./models/review');
 
 module.exports.isLoggedIn = (req, res, next) => {
-    req.session.returnTo = req.originalUrl;
     if (!req.isAuthenticated()) {
+        req.session.returnTo = req.originalUrl;
+        //console.log("ORIGINAL URL: ", req.originalUrl);
         req.flash('error', 'You must be logged in first!')
         return res.redirect('/login')
     }
