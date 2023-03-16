@@ -4,7 +4,7 @@ const {places, descriptors} = require('./seedHelpers');
 const Campground = require('../models/campground');
 
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
+mongoose.connect('mongodb://127.0.0.1:/yelp-camp', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
