@@ -70,7 +70,6 @@ app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
-    console.log("IN YELP CAMP!")
     res.render('home')
 })
 
